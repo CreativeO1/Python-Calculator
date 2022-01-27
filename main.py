@@ -16,10 +16,17 @@ def power(x, y):
     for z in range(1, y+1):
       result = result * x
   elif y < 0:
-    for z in range(1, y+1):
+    for z in range(1, abs(y)+1):
       result = result / x
   
   return result
+
+def check_number(x):
+  try:
+    float(x)
+    return True
+  except ValueError:
+    return False
 
 print("Possible Operations:\nAdd (X + Y)\nSubtract (X - Y)\nMultiply (X * Y)\nDivide (X / Y)\nFactorial (X !)\nExponent (X ^ Y)")
 
@@ -30,21 +37,24 @@ while True:
     splits = take.split(" ")
 
     if len(splits) >= 3:
-      number1 = int(splits[0])
-      number2 = int(splits[2])
+      if check_number(splits[0]) and check_number(splits[2]):
+        number1 = int(splits[0])
+        number2 = int(splits[2])
 
-      if splits[1] == "+":
-        print(number1 + number2)
-      elif splits[1] == "-":
-        print(number1 - number2)
-      elif splits[1] == "*":
-        print(number1 * number2)
-      elif splits[1] == "/":
-        print(number1 / number2)
-      elif splits[1] == "^":
-        print(power(number1, number2))
+        if splits[1] == "+":
+          print(number1 + number2)
+        elif splits[1] == "-":
+          print(number1 - number2)
+        elif splits[1] == "*":
+          print(number1 * number2)
+        elif splits[1] == "/":
+          print(number1 / number2)
+        elif splits[1] == "^":
+          print(power(number1, number2))
+        else:
+          print("Invalid operation!")
       else:
-        print("Invalid operation!")
+        print("Invalid number(s)!")
     elif len(splits) >= 2:
       if splits[0].isdecimal():
         if splits[1] == "!":
