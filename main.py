@@ -38,8 +38,8 @@ while True:
 
     if len(splits) >= 3:
       if check_number(splits[0]) and check_number(splits[2]):
-        number1 = int(splits[0])
-        number2 = int(splits[2])
+        number1 = float(splits[0])
+        number2 = float(splits[2])
 
         if splits[1] == "+":
           print(number1 + number2)
