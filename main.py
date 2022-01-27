@@ -9,7 +9,19 @@ def factorial(x):
   else:
     return "X must be a natural number for this operation!"
 
-print("Possible Operations:\nAdd (X + Y)\nSubtract (X - Y)\nMultiply (X * Y)\nDivide (X / Y)\nFactorial (X !)")
+def power(x, y):
+  result = 1
+
+  if y >= 0:
+    for z in range(1, y+1):
+      result = result * x
+  elif y < 0:
+    for z in range(1, y+1):
+      result = result / x
+  
+  return result
+
+print("Possible Operations:\nAdd (X + Y)\nSubtract (X - Y)\nMultiply (X * Y)\nDivide (X / Y)\nFactorial (X !)\nExponent (X ^ Y)")
 
 while True:
   take = input("Calculate: ")
@@ -18,19 +30,21 @@ while True:
     splits = take.split(" ")
 
     if len(splits) >= 3:
-      if splits[0].isdecimal() and splits[2].isdecimal():
-        if splits[1] == "+":
-          print(int(splits[0]) + int(splits[2]))
-        elif splits[1] == "-":
-          print(int(splits[0]) - int(splits[2]))
-        elif splits[1] == "*":
-          print(int(splits[0]) * int(splits[2]))
-        elif splits[1] == "/":
-          print(int(splits[0]) / int(splits[2]))
-        else:
-          print("Invalid operation!")
+      number1 = int(splits[0])
+      number2 = int(splits[2])
+
+      if splits[1] == "+":
+        print(number1 + number2)
+      elif splits[1] == "-":
+        print(number1 - number2)
+      elif splits[1] == "*":
+        print(number1 * number2)
+      elif splits[1] == "/":
+        print(number1 / number2)
+      elif splits[1] == "^":
+        print(power(number1, number2))
       else:
-        print("Invalid number!")
+        print("Invalid operation!")
     elif len(splits) >= 2:
       if splits[0].isdecimal():
         if splits[1] == "!":
